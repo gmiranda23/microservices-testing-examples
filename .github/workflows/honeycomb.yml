@@ -59,8 +59,10 @@ jobs:
           In addition, you can add custom fields by using the globally set BUILDEVENT_FILE. This variable is
           used as the path of a text file holding arbitrary key=val pairs (multi-line-capable, logfmt style)
           that will be added to all remaining Honeycomb events.
+
+          Note that the entries must be space deliminated. It is best to prepend a space before adding a new field.
           '
-          echo "runner-uname=$(uname -a)" >> $BUILDEVENT_FILE
+          echo " runner-uname=$(uname -a)" >> $BUILDEVENT_FILE
 
           : '
           The final parameter of the command is NAME. This is used to label the span when viewing a trace.
@@ -85,7 +87,7 @@ jobs:
           '
 
           buildevents cmd $TRACE_ID $STEP_ID sleep-5 -- sleep 5
-          buildevents cmd $TRACE_ID $STEP_ID sleep-15 -- sleep 10
+          buildevents cmd $TRACE_ID $STEP_ID sleep-10 -- sleep 10
 
           sleep 15
           buildevents step $TRACE_ID $STEP_ID $STEP_START $STEP_ID
@@ -126,7 +128,7 @@ jobs:
           '
           cp $BUILDEVENT_FILE ../add-fields-buildevents_file.txt
           BUILDEVENT_FILE=../add-fields-buildevents_file.txt
-          echo "span-specific-field=${GITHUB_STEP_SUMMARY}"
+          echo " span-specific-field=${GITHUB_STEP_SUMMARY}" >> $BUILDEVENT_FILE
 
           buildevents step $TRACE_ID $STEP_ID $STEP_START $STEP_ID
 
