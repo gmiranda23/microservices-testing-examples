@@ -91,6 +91,7 @@ jobs:
           buildevents cmd $TRACE_ID $STEP_ID sleep-15 -- sleep 10
 
           sleep 15
+          buildevents step $TRACE_ID $STEP_ID $STEP_START $STEP_ID
 
       - name: "Honeycomb: Start JDK setup"
         run: |
