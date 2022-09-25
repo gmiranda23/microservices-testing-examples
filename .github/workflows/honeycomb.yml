@@ -1,6 +1,6 @@
 # This starter workflow helps you send a trace of any build step to Honeycomb. It works
 # with a free Honeycomb account, which includes ample usage to support large scale
-# buildevents use cases).
+# buildevents use cases.
 #
 # To get started:
 # 1. Visit the Honeycomb Sign Up Page and create an account.
@@ -118,7 +118,7 @@ jobs:
           STEP_ID=add-fields
           STEP_START=$(date +%s)
 
-        # To do add fields into only this span, override the BUILDEVENT_FILE in a single step.
+        # To add fields into only this span, override the BUILDEVENT_FILE in a single step.
         # Note: if you want to use global varaibles, you will also need to capture them in the override file.
           cp $BUILDEVENT_FILE ../add-fields-buildevents_file.txt
           BUILDEVENT_FILE=../add-fields-buildevents_file.txt
@@ -153,4 +153,4 @@ jobs:
 
 # At the end of your workflow, the gha-buildevents action automatically runs as a post-action that executes the
 # 'buildevents build' command, which ends your trace span. You can see the trace generated via ui.honeycomb.io or
-# by clicking on the link in the 'Post Run honeycombio/gha-buildevents@v1' step
+# by clicking on the link in the 'Post Run honeycombio/gha-buildevents@v2' step
